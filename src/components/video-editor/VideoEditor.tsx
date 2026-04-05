@@ -111,6 +111,7 @@ export default function VideoEditor() {
 	const [showExportDialog, setShowExportDialog] = useState(false);
 	const [exportQuality, setExportQuality] = useState<ExportQuality>("good");
 	const [exportFormat, setExportFormat] = useState<ExportFormat>("mp4");
+	const [encoderPreference, setEncoderPreference] = useState<import("@/lib/exporter/types").EncoderPreference>("auto");
 	const [gifFrameRate, setGifFrameRate] = useState<GifFrameRate>(15);
 	const [gifLoop, setGifLoop] = useState(true);
 	const [gifSizePreset, setGifSizePreset] = useState<GifSizePreset>("medium");
@@ -202,6 +203,7 @@ export default function VideoEditor() {
 			});
 			setExportQuality(normalizedEditor.exportQuality);
 			setExportFormat(normalizedEditor.exportFormat);
+			setEncoderPreference(normalizedEditor.encoderPreference || "auto");
 			setGifFrameRate(normalizedEditor.gifFrameRate);
 			setGifLoop(normalizedEditor.gifLoop);
 			setGifSizePreset(normalizedEditor.gifSizePreset);
@@ -271,6 +273,7 @@ export default function VideoEditor() {
 				webcamPosition,
 				exportQuality,
 				exportFormat,
+				encoderPreference,
 				gifFrameRate,
 				gifLoop,
 				gifSizePreset,
@@ -295,6 +298,7 @@ export default function VideoEditor() {
 		webcamPosition,
 		exportQuality,
 		exportFormat,
+		encoderPreference,
 		gifFrameRate,
 		gifLoop,
 		gifSizePreset,
@@ -389,6 +393,7 @@ export default function VideoEditor() {
 				webcamPosition,
 				exportQuality,
 				exportFormat,
+				encoderPreference,
 				gifFrameRate,
 				gifLoop,
 				gifSizePreset,
@@ -444,6 +449,7 @@ export default function VideoEditor() {
 			webcamPosition,
 			exportQuality,
 			exportFormat,
+			encoderPreference,
 			gifFrameRate,
 			gifLoop,
 			gifSizePreset,
@@ -1226,6 +1232,7 @@ export default function VideoEditor() {
 						webcamVideoUrl: webcamVideoPath || undefined,
 						width: exportWidth,
 						height: exportHeight,
+						encoderPreference,
 						frameRate: 60,
 						bitrate,
 						codec: "avc1.640033",
@@ -1350,6 +1357,7 @@ export default function VideoEditor() {
 		const settings: ExportSettings = {
 			format: exportFormat,
 			quality: exportFormat === "mp4" ? exportQuality : undefined,
+			encoderPreference,
 			gifConfig:
 				exportFormat === "gif"
 					? {
@@ -1372,6 +1380,7 @@ export default function VideoEditor() {
 		videoPath,
 		exportFormat,
 		exportQuality,
+		encoderPreference,
 		gifFrameRate,
 		gifLoop,
 		gifSizePreset,
@@ -1654,6 +1663,8 @@ export default function VideoEditor() {
 						onExportQualityChange={setExportQuality}
 						exportFormat={exportFormat}
 						onExportFormatChange={setExportFormat}
+						encoderPreference={encoderPreference}
+						onEncoderPreferenceChange={setEncoderPreference}
 						gifFrameRate={gifFrameRate}
 						onGifFrameRateChange={setGifFrameRate}
 						gifLoop={gifLoop}

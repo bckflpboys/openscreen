@@ -124,6 +124,8 @@ interface SettingsPanelProps {
 	// Export format settings
 	exportFormat?: ExportFormat;
 	onExportFormatChange?: (format: ExportFormat) => void;
+	encoderPreference?: import("@/lib/exporter/types").EncoderPreference;
+	onEncoderPreferenceChange?: (preference: import("@/lib/exporter/types").EncoderPreference) => void;
 	gifFrameRate?: GifFrameRate;
 	onGifFrameRateChange?: (rate: GifFrameRate) => void;
 	gifLoop?: boolean;
@@ -197,6 +199,8 @@ export function SettingsPanel({
 	onExportQualityChange,
 	exportFormat = "mp4",
 	onExportFormatChange,
+	encoderPreference = "auto",
+	onEncoderPreferenceChange,
 	gifFrameRate = 15,
 	onGifFrameRateChange,
 	gifLoop = true,
@@ -1220,6 +1224,49 @@ export function SettingsPanel({
 						>
 							{t("exportQuality.high")}
 						</button>
+					</div>
+				)}
+
+				{exportFormat === "mp4" && (
+					<div className="mb-4 space-y-2">
+						<label className="text-xs font-medium text-slate-300">
+							{t("encoderPreference.title", "Hardware Acceleration")}
+						</label>
+						<div className="flex bg-white/5 border border-white/5 p-0.5 h-7 rounded-lg">
+							<button
+								onClick={() => onEncoderPreferenceChange?.("auto")}
+								className={cn(
+									"flex-1 rounded-md transition-all text-[10px] font-medium",
+									encoderPreference === "auto"
+										? "bg-white text-black"
+										: "text-slate-400 hover:text-slate-200",
+								)}
+							>
+								{t("encoderPreference.auto", "Auto")}
+							</button>
+							<button
+								onClick={() => onEncoderPreferenceChange?.("hardware")}
+								className={cn(
+									"flex-1 rounded-md transition-all text-[10px] font-medium",
+									encoderPreference === "hardware"
+										? "bg-white text-black"
+										: "text-slate-400 hover:text-slate-200",
+								)}
+							>
+								{t("encoderPreference.hardware", "GPU")}
+							</button>
+							<button
+								onClick={() => onEncoderPreferenceChange?.("software")}
+								className={cn(
+									"flex-1 rounded-md transition-all text-[10px] font-medium",
+									encoderPreference === "software"
+										? "bg-white text-black"
+										: "text-slate-400 hover:text-slate-200",
+								)}
+							>
+								{t("encoderPreference.software", "CPU")}
+							</button>
+						</div>
 					</div>
 				)}
 

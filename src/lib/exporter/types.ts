@@ -29,6 +29,8 @@ export interface VideoFrameData {
 
 export type ExportQuality = "medium" | "good" | "source";
 
+export type EncoderPreference = "auto" | "hardware" | "software";
+
 // GIF Export Types
 export type ExportFormat = "mp4" | "gif";
 
@@ -48,6 +50,7 @@ export interface ExportSettings {
 	format: ExportFormat;
 	// MP4 settings
 	quality?: ExportQuality;
+	encoderPreference?: EncoderPreference;
 	// GIF settings
 	gifConfig?: GifExportConfig;
 }

@@ -67,6 +67,12 @@
 		"medium": "中",
 		"high": "高"
 	},
+	"encoderPreference": {
+		"title": "硬件加速",
+		"auto": "自动",
+		"hardware": "GPU",
+		"software": "CPU"
+	},
 	"gifSettings": {
 		"frameRate": "GIF 帧率",
 		"size": "GIF 尺寸",

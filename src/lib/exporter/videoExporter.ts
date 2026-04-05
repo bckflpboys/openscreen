@@ -38,6 +38,7 @@ interface VideoExporterConfig extends ExportConfig {
 	previewWidth?: number;
 	previewHeight?: number;
 	cursorTelemetry?: import("@/components/video-editor/types").CursorTelemetryPoint[];
+	encoderPreference?: import("./types").EncoderPreference;
 	onProgress?: (progress: ExportProgress) => void;
 }
 
@@ -521,6 +522,17 @@ export class VideoExporter {
 	}
 
 	private getEncoderPreferences(): HardwareAcceleration[] {
+		const preference = this.config.encoderPreference || "auto";
+
+		if (preference === "hardware") {
+			return ["prefer-hardware"];
+		}
+
+		if (preference === "software") {
+			return ["prefer-software"];
+		}
+
+		// Auto
 		if (typeof navigator !== "undefined" && /\bWindows\b/i.test(navigator.userAgent)) {
 			return ["prefer-software", "prefer-hardware"];
 		}

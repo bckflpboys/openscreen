@@ -67,6 +67,12 @@
 		"medium": "Medium",
 		"high": "High"
 	},
+	"encoderPreference": {
+		"title": "Hardware Acceleration",
+		"auto": "Auto",
+		"hardware": "GPU",
+		"software": "CPU"
+	},
 	"gifSettings": {
 		"frameRate": "GIF Frame Rate",
 		"size": "GIF Size",

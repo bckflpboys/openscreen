@@ -50,6 +50,7 @@ export interface ProjectEditorState {
 	webcamPosition: WebcamPosition | null;
 	exportQuality: ExportQuality;
 	exportFormat: ExportFormat;
+	encoderPreference: import("@/lib/exporter/types").EncoderPreference;
 	gifFrameRate: GifFrameRate;
 	gifLoop: boolean;
 	gifSizePreset: GifSizePreset;
@@ -378,6 +379,10 @@ export function normalizeProjectEditor(editor: Partial<ProjectEditorState>): Pro
 				? editor.exportQuality
 				: "good",
 		exportFormat: editor.exportFormat === "gif" ? "gif" : "mp4",
+		encoderPreference:
+			editor.encoderPreference === "hardware" || editor.encoderPreference === "software"
+				? editor.encoderPreference
+				: "auto",
 		gifFrameRate:
 			editor.gifFrameRate === 15 ||
 			editor.gifFrameRate === 20 ||
