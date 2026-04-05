@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // @see - https://www.electron.build/configuration/configuration
 {
   "$schema": "https://raw.githubusercontent.com/electron-userland/electron-builder/master/packages/app-builder-lib/scheme.json",
@@ -20,6 +21,30 @@
     "!CONTRIBUTING.md",
     "!LICENSE"
   ],
+=======
+// @see - https://www.electron.build/configuration/configuration
+{
+  "$schema": "https://raw.githubusercontent.com/electron-userland/electron-builder/master/packages/app-builder-lib/scheme.json",
+  "appId": "com.siddharthvaddem.openscreen",
+  "asar": true,
+  "productName": "Openscreen",
+  "npmRebuild": true,
+  "buildDependenciesFromSource": true,
+  "compression": "normal",
+  "directories": {
+    "output": "release/${version}"
+  },
+  "files": [
+    "dist",
+    "dist-electron",
+    "!*.png",
+    "!preview*.png",
+    "!*.md",
+    "!README.md",
+    "!CONTRIBUTING.md",
+    "!LICENSE"
+  ],
+>>>>>>> origin/feat/hardware-acceleration-preference-9870392304660015140
   "extraResources": [
     {
       "from": "public/wallpapers",
@@ -29,6 +54,7 @@
   "publish": [{"provider": "github"}],
 
   "mac": {
+<<<<<<< HEAD
     "hardenedRuntime": false,
     "target": [
       {
@@ -38,6 +64,17 @@
     ],
     "icon": "icons/icons/mac/icon.icns",
     "artifactName": "${productName}-Mac-${arch}-${version}-Installer.${ext}",
+=======
+    "hardenedRuntime": false,
+    "target": [
+      {
+        "target": "dmg",
+        "arch": ["x64", "arm64"]
+      }
+    ],
+    "icon": "icons/icons/mac/icon.icns",
+    "artifactName": "${productName}-Mac-${arch}-${version}-Installer.${ext}",
+>>>>>>> origin/feat/hardware-acceleration-preference-9870392304660015140
     "extendInfo": {
       "NSAudioCaptureUsageDescription": "OpenScreen needs audio capture permission to record system audio.",
       "NSMicrophoneUsageDescription": "OpenScreen needs microphone access to record voice audio.",
@@ -45,6 +82,7 @@
       "NSCameraUseContinuityCameraDeviceType": true,
       "com.apple.security.device.audio-input": true
     }
+<<<<<<< HEAD
   },
   "linux": {
     "target": [
@@ -54,6 +92,17 @@
     "artifactName": "${productName}-Linux-${version}.${ext}",
     "category": "AudioVideo"
   },
+=======
+  },
+  "linux": {
+    "target": [
+      "AppImage"
+    ],
+    "icon": "icons/icons/png",
+    "artifactName": "${productName}-Linux-${version}.${ext}",
+    "category": "AudioVideo"
+  },
+>>>>>>> origin/feat/hardware-acceleration-preference-9870392304660015140
   "win": {
     "target": [
       "nsis"
